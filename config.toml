@@ -43,7 +43,7 @@ disableAliases = true
 [[menu.main]]
     name = "Contact"
     pre = "<i class='fa fa-envelope'></i>"
-    url = "#"
+    url = "/contact/"
     weight = 5  
     
 [[menu.footer]]

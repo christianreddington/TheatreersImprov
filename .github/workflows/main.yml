@@ -19,5 +19,5 @@ jobs:
     - uses: lauchacarro/Azure-Storage-Action@master
       with:
         enabled-static-website: 'true'
-        folder: './public'
+        folder: '/home/runner/work/TheatreersImprov/TheatreersImprov/public'
         connection-string: ${{ secrets.CONNECTION_STRING }}

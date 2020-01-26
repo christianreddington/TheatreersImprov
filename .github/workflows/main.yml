@@ -31,4 +31,4 @@ jobs:
       uses: enricomarino/actions@v2
       with:
         # The folder to inspect
-        source: $GITHUB_WORKSPACE
+        source: /

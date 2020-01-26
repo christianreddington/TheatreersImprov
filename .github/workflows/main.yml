@@ -8,6 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:     
+    
+    
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
     - uses: actions/checkout@v2
     - name: Checkout submodules
       shell: bash
@@ -27,3 +33,9 @@ jobs:
         enabled-static-website: 'true'
         folder: '/home/runner/work/TheatreersImprov/TheatreersImprov/public'
         connection-string: ${{ secrets.CONNECTION_STRING }}
+    - name: Azure CLI script
+      uses: azure/CLI@v1
+      with:
+        azcliversion: 2.0.72
+        inlineScript: |
+          az cdn endpoint purge --content-paths  "/*" --profile-name "theatreers-cdn" --name "theatreers" --resource-group "theatreers"

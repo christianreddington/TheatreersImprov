@@ -45,6 +45,11 @@ disableAliases = true
     pre = "<i class='fa fa-envelope'></i>"
     url = "/contact/"
     weight = 5  
+[[menu.main]]
+    name = "Posts"
+    pre = "<i class='fa fa-pencil'></i>"
+    url = "/posts/"
+    weight = 6
     
 [[menu.footer]]
     identifier = "facebook"

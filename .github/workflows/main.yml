@@ -7,17 +7,28 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:   
-    - uses: actions/checkout@master 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
+    steps:       
+    - uses: actions/checkout@v2
+    - name: Checkout submodules
+      shell: bash
+      run: |
+        auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+        git submodule sync --recursive
+        git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=  
+    #- name: Setup Hugo
+    #  uses: peaceiris/actions-hugo@v2
+    #  with:
+    #    hugo-version: '0.62.2'
+    #    # extended: true
+    #- name: Build
+    #  run: hugo --minify
+    #- uses: lauchacarro/Azure-Storage-Action@master
+    #  with:
+    #    enabled-static-website: 'true'
+    #    folder: '/home/runner/work/TheatreersImprov/TheatreersImprov/public'
+    #    connection-string: ${{ secrets.CONNECTION_STRING }}
+    - name: Content list
+      uses: enricomarino/actions@v2
       with:
-        hugo-version: '0.62.2'
-        # extended: true
-    - name: Build
-      run: hugo --minify
-    - uses: lauchacarro/Azure-Storage-Action@master
-      with:
-        enabled-static-website: 'true'
-        folder: '/home/runner/work/TheatreersImprov/TheatreersImprov/public'
-        connection-string: ${{ secrets.CONNECTION_STRING }}
+        # The folder to inspect
+        source: $GITHUB_WORKSPACE

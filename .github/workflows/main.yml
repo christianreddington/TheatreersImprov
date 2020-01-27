@@ -1,15 +1,12 @@
 name: CI
-
-on: [push]
-
+on: 
+  push:
+    branches:
+      - master
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    steps:     
-    
-    
+    steps:            
     - name: Azure Login
       uses: azure/login@v1
       with:
